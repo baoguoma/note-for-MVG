@@ -9,6 +9,6 @@
 
 由于本人非翻译专业，有些不太好翻译的地方会直接用书中原文代替。
 
-**Github不支持显示公式，请给chrome安装MathJax Plugin for Github插件后方可正常显示**
+**Github不支持显示公式，请给chrome安装MathJax Plugin for Github插件后方可正常显示。或者你可以下载到本地用markdown编辑器来看**
 
 欢迎大家提出各种各样的意见，可以直接在github上题issue或者写邮件，本人联系方式:15718775@qq.com
