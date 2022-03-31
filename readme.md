@@ -1,5 +1,6 @@
+# 
 # 前言
-本文档是个人对于Multiple View Geometry in Computer Vision (Second Edition) 一书的读书笔记。
+本文档是个人对于 <<计算机视觉种的多视图几何>> Multiple View Geometry in Computer Vision (Second Edition) 一书的读书笔记。
 
 笔记内容包括书中各个章节的知识点，结论，以及结论大致的证明思路（不包括具体证明细节，反正写了也没人有兴趣看）。
 
