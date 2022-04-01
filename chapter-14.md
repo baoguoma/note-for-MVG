@@ -175,3 +175,82 @@ $$
 $$
 
 # 14.5 仿射重建
+
+假设我们有多于4对对应点$x_i \leftrightarrow x'_i$, 那么我们回一下, 如果摄像机是投影摄像机, 那么重建的结果就是投影重建. 现在如果摄像机是仿射摄像机, 那么重建结果就是仿射重建. 本节就来说明这个结果.
+
+我们假设空间中有四个不共面的点$X_i$, 我们选择$X_0$作为原点. 然后我们构造三个坐标轴, 表示为$\tilde{E_i} = \tilde{X_i} - \tilde{X_0}$. 所以对于一个空间中的点$X=(x,y,z)$, 他的坐标就可以表示为
+
+$$
+\tilde{X} = X_0 + x \tilde{E_1} + y \tilde{E_2} + z \tilde{E_3} 
+$$
+
+$$
+\tilde{X_0} =
+\begin{pmatrix}
+0 \\
+0 \\
+0 \\
+\end{pmatrix}
+
+\tilde{X_1} =
+\begin{pmatrix}
+1 \\
+0 \\
+0 \\
+\end{pmatrix}
+
+\tilde{X_2} =
+\begin{pmatrix}
+0 \\
+1 \\
+0 \\
+\end{pmatrix}
+
+\tilde{X_3} =
+\begin{pmatrix}
+0 \\
+0 \\
+1 \\
+\end{pmatrix}
+$$
+
+有了这些公式以后, 我们来看看仿射摄像机的投影过程长什么样. 该过程可以被表达为
+$$
+\tilde{x} = M_{2 \times 3} \tilde{X} + \tilde{t}
+$$
+
+所以说上文的$\tilde{E_i}$可以被表示成$\tilde{e_i}=M_{2 \times 3} \tilde{E_i}$, 那么对于空间点$X=(x,y,z)$, 他在第一幅图像中就可以被表示成
+$$
+x \tilde{e_1} + y \tilde{e_2} + z \tilde{e_3}
+$$
+
+对于第二幅图象, $\tilde{e}'=M_{2 \times 3} \tilde{E_i}$, 那么$X$在第二幅图象中就可以表示成
+
+$$
+x \tilde{e_1}' + y \tilde{e_2}' + z \tilde{e_3}'
+$$
+
+## 14.6 Necker reversal and the bas-relief ambiguity(不知道咋翻译)
+
+本章主要讲述在已标定摄像机的情况下, 只用两个图像会产生一系列的歧义. 
+主要是两种歧义:
+1. Necker reversal
+   其主要原因是物体旋转$\rho$ 和旋转$-\rho$的镜像, 在affine摄像机下会产生同样的投影图像. 如果是透视投影, 那么每个点都会有不同的深度,所以这种歧义就没有了.
+
+2. The bas-relief ambiguity. 主要原因是摄像机进行一个旋转后,从光心出发的光线依旧相交于同一点. 这样导致深度和旋转角度是不确定的.参见p357, fig14.9(b), 看图容易理解一点.
+
+## 14.7 计算摄像机运动
+
+本节主要讲述如果从$F_A$中计算摄像机运动.
+我们首先把摄像机的运动表示为$R=R_{\rho}R_{\theta}$
+
+$\theta$是绕视线方向的旋转角度. $\rho$是绕与图像平面平行的轴的旋转角度, $\phi$是图像x轴的旋转角度.具体参见p358 fig14.10, 图像之间除了旋转还有一个缩放因子$s$
+
+具体的推导过程我们省略, 在这里直接给出公式
+$$
+\tan \phi = \frac{b}{a} \\
+\tan (\phi - \theta) = \frac{d}{c} \\
+s^2 = \frac{c^2+d^2}{a^2+b^2}
+$$
+
+$a,b,c,d$就是黄金标准算法里提到的四维空间的平面参数
