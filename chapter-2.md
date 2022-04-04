@@ -74,3 +74,184 @@ $$
 从几何角度来解释, 投影变换其实定义了一个平面到平面的映射, 因为我们知道,投影几何的就是由平面定义的. 而且前文也说了, 投影变换保持了共线性. 如果说这两个平面上的坐标系都是欧式坐标系. 那么这个投影变换就变成了6个自由度的透视变换.
 
 ## 2.3.1 线段和圆锥的变换
+我们直接上结果: 一个点有如下变换$x'=Hx$,那么线变换就是$l'=H^{-T} l$, 圆锥变换就是$x^TCx = x'^T H^{-T}CH^{-1}x'$, 所以$C=H^{-T}CH^{-1}$, 其对偶圆变换就是$C*'=HC^{*}H^T$
+
+## 2.4 投影变换的种类
+
+本节时一个重点章节
+
+### 2.4.1 刚体变换
+
+其形式如下
+$$
+\left(
+\begin{matrix}
+x' \\
+y' \\
+1
+\end{matrix}
+\right)
+=
+
+\left[
+    \begin{matrix}
+    \epsilon \cos \theta & -\sin & t_x \\
+    \epsilon \sin \theta & -\cos & t_y \\
+    0 & 0 & 1
+    \end{matrix}
+
+\right]
+
+\left(
+    \begin{matrix}
+    x\\
+    y\\
+    1
+    \end{matrix}
+
+\right)
+
+$$
+
+可以简写成
+$$
+x'
+=
+\left[
+    \begin{matrix}
+    R & t   \\
+    0^T & 1 \\
+    \end{matrix}
+\right]
+x
+$$
+
+$R$是一个$2 \times 2$的正交矩阵, 整个大矩阵有三个自由度, 旋转一个, 平移两个. 不变量是: 线段长度, 线段之间角度, 图形的面积
+
+## 2.4.2 相似变换
+
+其形式如下:
+
+$$
+\left(
+\begin{matrix}
+x' \\
+y' \\
+1
+\end{matrix}
+\right)
+=
+
+\left[
+    \begin{matrix}
+    s \cos \theta & -s \sin & t_x \\
+    s \sin \theta & s \cos & t_y \\
+    0 & 0 & 1
+    \end{matrix}
+
+\right]
+
+\left(
+    \begin{matrix}
+    x\\
+    y\\
+    1
+    \end{matrix}
+
+\right)
+$$
+
+可以简写成
+$$
+x'
+=
+\left[
+    \begin{matrix}
+    sR & t   \\
+    0^T & 1 \\
+    \end{matrix}
+\right]
+x
+$$
+
+整个矩阵四个自由度:缩放因子一个,旋转一个,平移两个. 其不变量是: 线段之间角度, 平行线还是平行的, 线段之间的比例不变, 因为是对整个图形进行缩放. 不同区域之间的面积也不变.
+
+## 2.4.3 仿射变换
+
+
+$$
+\left(
+\begin{matrix}
+x' \\
+y' \\
+1
+\end{matrix}
+\right)
+=
+
+\left[
+    \begin{matrix}
+    a_{11} & a_{12} & t_x \\
+    a_{21} & a_{22} & t_y \\
+    0 & 0 & 1
+    \end{matrix}
+
+\right]
+
+\left(
+    \begin{matrix}
+    x\\
+    y\\
+    1
+    \end{matrix}
+
+\right)
+$$
+
+可以简写成
+$$
+x'
+=
+\left[
+    \begin{matrix}
+    A & t   \\
+    0^T & 1 \\
+    \end{matrix}
+\right]
+x
+$$
+整个矩阵六个自由度. 左上角$A$四个, 平移两个.
+
+$A$可以被分解成如下形式:
+$$
+A=R(\theta) R(-\phi) D R(\phi) 
+$$
+
+$$
+\left[
+\begin{matrix}
+\lambda_1 & 0 \\
+0 & \lambda_2
+\end{matrix}
+\right]
+$$
+
+所以$A$可以被解释为先旋转一个角度$\phi$, 再从$x,y$两个方向进行缩放,其比例因子为$\lambda_1, \lambda_2$, 再按$-\phi$旋转回去, 再转一个$\theta$
+
+由于进行了压缩, 那么线段之间的角度就变了, 只能是保持直线之间的平行性, 直线之间比例, 面积的比例.
+
+## 投影变换
+
+$$
+x'
+=
+\left[
+    \begin{matrix}
+    A & t   \\
+    v^T & v \\
+    \end{matrix}
+\right]
+x
+$$
+
+整个大矩阵8个自由度. 其不变量只能是直线变换以后还是直线.
