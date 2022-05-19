@@ -11,6 +11,8 @@
 由于本人非翻译专业，有些不太好翻译的地方会直接用书中原文代替。
 
 **我把markdown全部转成html了, 大家可以直接看html,这样不会有公式问题了**
+**地址在这里**
+**https://baoguoma.github.io/note-for-MVG/**
 
 **Github不支持显示公式，请给chrome安装MathJax Plugin for Github插件后方可正常显示。或者你可以下载到本地用markdown编辑器来看**
 
